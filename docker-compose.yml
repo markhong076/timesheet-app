@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5450:5432"   # maps host 5450 → container 5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: timesheetdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
