@@ -10,6 +10,7 @@ public class TimesheetRecord
     [MaxLength(2000)]
     public string? Description { get; set; }
 
+    /// <summary>Hourly rate in your currency (e.g., USD/hour).</summary>
     [Column(TypeName = "numeric(14,2)")]
     public decimal Rate { get; set; }
 
@@ -26,7 +27,13 @@ public class TimesheetLineItem
     public Guid TimesheetRecordId { get; set; }
     public TimesheetRecord? Timesheet { get; set; }
 
+    /// <summary>Date the work happened.</summary>
     public DateOnly Date { get; set; }
+
+    /// <summary>Number of minutes worked for this line item.</summary>
+    [Range(0, int.MaxValue)]
     public int Minutes { get; set; }
+
+    /// <summary>Optional note for this line (not required by spec).</summary>
     public string? Notes { get; set; }
 }

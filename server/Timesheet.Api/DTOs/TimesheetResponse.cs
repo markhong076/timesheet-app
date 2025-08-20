@@ -12,4 +12,9 @@ public record TimesheetResponse(
     DateTime UpdatedAt
 );
 
-public record LineItemView(Guid Id, DateOnly Date, int Minutes, string? Notes);
+public record LineItemView(
+    Guid Id,
+    DateOnly Date,
+    int Minutes,
+    string? Notes
+);

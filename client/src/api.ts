@@ -1,7 +1,12 @@
 const base = import.meta.env.VITE_API_BASE ?? 'http://localhost:5000'
 
 export interface LineItemDto { date: string; minutes: number; notes?: string | null }
-export interface CreateTimesheetRequest { description?: string | null; rate: number; lineItems: LineItemDto[] }
+export interface CreateTimesheetRequest {
+  description?: string | null
+  rate: number
+  lineItems: LineItemDto[]
+}
+
 export interface TimesheetResponse {
   id: string
   description?: string | null
