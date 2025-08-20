@@ -40,3 +40,8 @@ export async function createTimesheet(req: CreateTimesheetRequest): Promise<Time
   if (!res.ok) throw new Error(await res.text())
   return res.json()
 }
+
+export async function deleteTimesheet(id: string): Promise<void> {
+  const res = await fetch(`${base}/api/timesheets/${id}`, { method: "DELETE" });
+  if (!res.ok) throw new Error(await res.text());
+}
