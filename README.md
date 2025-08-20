@@ -39,3 +39,4 @@ VITE_API_BASE=http://localhost:5000
 - Create Authentication/Authorization (I'm thinking JWT)
 - Host on AWS
 - Add testing suite
+- Add some styling (thinking Tailwind)
