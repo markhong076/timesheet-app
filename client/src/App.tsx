@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TimesheetEditor from './components/TimesheetEditor'
 import TimesheetList from './components/TimesheetList'
 import TimesheetView from './components/TimesheetView'
+import { useState } from 'react'
 
 export default function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -9,7 +10,7 @@ export default function App() {
     <div style={{ fontFamily: 'system-ui, sans-serif', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, padding: 24 }}>
       <section>
         <h1 style={{ fontSize: 28, marginBottom: 8 }}>Timesheet Editor</h1>
-        <p style={{ color: '#555', marginTop: 0 }}>Add line items, set an hourly rate, and save.</p>
+        <p style={{ color: '#555', marginTop: 0 }}>Add line items (date + minutes), set an hourly rate, and save.</p>
         <TimesheetEditor onSaved={(id) => setSelectedId(id)} />
       </section>
       <section>

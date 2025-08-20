@@ -32,6 +32,7 @@ public class AppDbContext : DbContext
             e.HasKey(li => li.Id);
             e.Property(li => li.Minutes).IsRequired();
             e.Property(li => li.Notes).HasMaxLength(1000);
+            // Map DateOnly to date
             e.Property(li => li.Date).HasColumnType("date");
         });
     }

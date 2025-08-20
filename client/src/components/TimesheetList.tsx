@@ -4,7 +4,9 @@ import { listTimesheets, TimesheetResponse } from '../api'
 export default function TimesheetList({ onSelect, selectedId }: { onSelect: (id: string) => void, selectedId: string | null }) {
   const [data, setData] = useState<TimesheetResponse[]>([])
   const [err, setErr] = useState<string | null>(null)
-  useEffect(() => { listTimesheets().then(setData).catch(e => setErr(e.message ?? String(e))) }, [])
+  useEffect(() => {
+    listTimesheets().then(setData).catch(e => setErr(e.message ?? String(e)))
+  }, [])
 
   if (err) return <div style={{ color: 'crimson' }}>{err}</div>
   return (
