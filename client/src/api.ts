@@ -41,6 +41,14 @@ export async function createTimesheet(req: CreateTimesheetRequest): Promise<Time
   return res.json()
 }
 
+export async function updateTimesheet(id: string, req: CreateTimesheetRequest): Promise<TimesheetResponse> {
+  const res = await fetch(`${base}/api/timesheets/${id}`, {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(req)
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
 export async function deleteTimesheet(id: string): Promise<void> {
   const res = await fetch(`${base}/api/timesheets/${id}`, { method: "DELETE" });
   if (!res.ok) throw new Error(await res.text());

@@ -69,31 +69,35 @@ public class TimesheetsController : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<ActionResult<TimesheetResponse>> Update([FromRoute] Guid id, [FromBody] UpdateTimesheetRequest req, CancellationToken ct)
     {
-        var entity = await _db.Timesheets
-            .Include(t => t.LineItems)
-            .FirstOrDefaultAsync(t => t.Id == id, ct);
+        var t = await _db.Timesheets.FirstOrDefaultAsync(x => x.Id == id, ct);
+        if (t is null) return NotFound();
 
-        if (entity is null) return NotFound();
+        t.Description = req.Description;
+        t.Rate = req.Rate;
+        t.UpdatedAt = DateTime.UtcNow;
 
-        if (req.LineItems.Any(li => li.Minutes < 0))
-            return BadRequest("Minutes must be >= 0.");
+        await _db.LineItems
+            .Where(li => li.TimesheetRecordId == id)
+            .ExecuteDeleteAsync(ct);
 
-        entity.Description = req.Description;
-        entity.Rate = req.Rate;
-
-        // Replace line items
-        _db.LineItems.RemoveRange(entity.LineItems);
-        entity.LineItems = req.LineItems.Select(li => new TimesheetLineItem
+        var newItems = req.LineItems.Select(li => new TimesheetLineItem
         {
+            Id = Guid.NewGuid(),
+            TimesheetRecordId = id,
             Date = li.Date,
             Minutes = li.Minutes,
             Notes = li.Notes
         }).ToList();
 
-        entity.UpdatedAt = DateTime.UtcNow;
+        await _db.LineItems.AddRangeAsync(newItems, ct);
+
         await _db.SaveChangesAsync(ct);
 
-        return Ok(ToResponse(entity));
+        var reloaded = await _db.Timesheets
+            .Include(x => x.LineItems)
+            .FirstAsync(x => x.Id == id, ct);
+
+        return ToResponse(reloaded);
     }
 
     // Delete
