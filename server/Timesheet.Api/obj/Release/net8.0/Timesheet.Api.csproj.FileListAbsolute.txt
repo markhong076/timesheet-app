@@ -118,3 +118,8 @@
 /Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/Timesheet.Api.deps.json
 /Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/Timesheet.Api.runtimeconfig.json
 /Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/Timesheet.Api.staticwebassets.endpoints.json
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/publish/web.config
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/publish/appsettings.json
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/publish/Timesheet.Api.deps.json
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/publish/Timesheet.Api.runtimeconfig.json
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Release/net8.0/publish/publish/Timesheet.Api.staticwebassets.endpoints.json
