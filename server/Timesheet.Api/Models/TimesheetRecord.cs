@@ -7,6 +7,9 @@ public class TimesheetRecord
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
+    public Guid UserId { get; set; }
+    public AppUser? User { get; set; }
+
     [MaxLength(2000)]
     public string? Description { get; set; }
 

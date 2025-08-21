@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
 using Timesheet.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +28,19 @@ builder.Services.AddCors(o =>
          .AllowAnyMethod());
 });
 
+var jwt = builder.Configuration.GetSection("Jwt");
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opt =>
+    {
+        opt.TokenValidationParameters = new()
+        {
+            ValidateIssuer = true, ValidateAudience = true, ValidateIssuerSigningKey = true,
+            ValidIssuer = jwt["Issuer"], ValidAudience = jwt["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!))
+        };
+    });
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Apply pending EF Core migrations automatically on startup
@@ -40,6 +57,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowClient");
-app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 
+app.MapControllers();
 app.Run();
