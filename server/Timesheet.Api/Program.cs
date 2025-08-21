@@ -7,17 +7,22 @@ using Timesheet.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string? cs =
+    builder.Configuration.GetConnectionString("Default") ??
+    builder.Configuration.GetConnectionString("DefaultConnection") ??
+    builder.Configuration["ConnectionStrings:Default"] ??
+    builder.Configuration["ConnectionStrings:DefaultConnection"];
+
+if (string.IsNullOrWhiteSpace(cs))
+    throw new InvalidOperationException(
+        "No Postgres connection string found. Set ConnectionStrings:Default (or DefaultConnection).");
+
 // Add services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    var cs = builder.Configuration.GetConnectionString("Default")
-        ?? "Host=localhost;Port=5432;Database=timesheetdb;Username=postgres;Password=postgres";
-    options.UseNpgsql(cs);
-});
+builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(cs));
 
 // CORS for Vite dev server
 builder.Services.AddCors(o =>
