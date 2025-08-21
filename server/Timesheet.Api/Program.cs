@@ -32,6 +32,12 @@ builder.Services.AddCors(o =>
          .AllowAnyHeader()
          .AllowAnyMethod());
 });
+var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(';', StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+builder.Services.AddCors(o => o.AddPolicy("ProdCors", p => p
+    .WithOrigins(allowedOrigins.Length > 0 ? allowedOrigins : new[] { "https://example.com" })
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
+// …
 
 var jwt = builder.Configuration.GetSection("Jwt");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,7 +67,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowClient");
+app.UseCors("ProdCors");
 app.UseAuthentication();
 app.UseAuthorization();
 
