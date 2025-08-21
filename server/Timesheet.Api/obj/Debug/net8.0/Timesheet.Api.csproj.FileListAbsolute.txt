@@ -209,3 +209,12 @@
 /Users/markhong/timesheet-app/server/Timesheet.Api/obj/Debug/net8.0/Timesheet.Api.pdb
 /Users/markhong/timesheet-app/server/Timesheet.Api/obj/Debug/net8.0/Timesheet.Api.genruntimeconfig.cache
 /Users/markhong/timesheet-app/server/Timesheet.Api/obj/Debug/net8.0/ref/Timesheet.Api.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/markhong/timesheet-app/server/Timesheet.Api/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
