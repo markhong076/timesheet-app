@@ -1,5 +1,7 @@
 # Timesheet App (ASP.NET Core + React + PostgreSQL)
 
+# App is now deployed using Azure and is reachable at  https://salmon-river-0df41d11e.2.azurestaticapps.net/
+
 ## Quick Start
 
 1) Start PostgreSQL (via Docker):
