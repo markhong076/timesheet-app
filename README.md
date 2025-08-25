@@ -29,7 +29,7 @@ VITE_API_BASE=http://localhost:5000
 ```
 
 ### Notes
-- Entity class is **TimesheetRecord** (per your preference). Each record has many **TimesheetLineItem** entries.
+- Entity class is **TimesheetRecord**. Each record has many **TimesheetLineItem** entries.
 - `totalMinutes` is the sum of line item minutes. `totalCost = (totalMinutes / 60) * rate` (rate per hour).
 - CORS is configured for the Vite dev server.
 - EF Core migrations auto-apply on app start; you can switch to manual if preferred.
